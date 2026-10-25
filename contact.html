@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Prise de RDV | Pacôme Donan SODAZINDJI</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Icônes FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Script Intégration Calendly -->
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</head>
+<body>
+
+    <!-- Barre de Navigation Multi-Pages -->
+    <header class="navbar">
+        <a href="index.html" class="logo">Pacôme<span>.SODAZINDJI</span></a>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="projets.html">Projets Clients & SI</a></li>
+                <li><a href="github.html">Projets GitHub</a></li>
+                <li><a href="interventions.html">Interventions & Prix</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <!-- Bouton Basculeur Thème Sombre / Clair -->
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer de thème">
+                <i class="fas fa-sun"></i>
+            </button>
+
+            <!-- Liens Réseaux Sociaux -->
+            <div class="social-icons">
+                <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Paco-clod" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section style="margin-bottom: 40px; text-align: center;">
+            <h1 class="page-title">Contact & Prise de Rendez-vous</h1>
+            <p class="page-subtitle" style="max-width: 700px; margin: 0 auto;">
+                Réservez directement un créneau dans mon agenda ou envoyez-moi un message pour toute opportunité de stage M1, d'alternance M2 ou de mission Data & IA.
+            </p>
+        </section>
+
+        <!-- Coordonnées Directes -->
+        <section style="margin-bottom: 40px;">
+            <div class="card" style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;">
+                <p><i class="fas fa-envelope" style="color: var(--accent-color); margin-right: 8px;"></i> <strong>E-mail :</strong> comepaco0@gmail.com</p>
+                <p><i class="fas fa-phone" style="color: var(--accent-color); margin-right: 8px;"></i> <strong>Téléphone :</strong> +33 6 05 83 73 68</p>
+                <p><i class="fas fa-location-dot" style="color: var(--accent-color); margin-right: 8px;"></i> <strong>Localisation :</strong> Île-de-France (Goussainville / Pontoise)</p>
+            </div>
+        </section>
+
+        <!-- Grille : Calendly d'un côté, Formulaire de l'autre -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+
+            <!-- Widget Agenda Calendly -->
+            <div>
+                <h2 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--accent-color);">
+                    📅 Réserver un créneau (Agenda Synchronisé)
+                </h2>
+                <div class="card" style="padding: 10px; height: 650px; overflow: hidden;">
+                    <!-- Widget Calendly avec votre lien exact -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/comepaco0" style="min-width:320px;height:630px;"></div>
+                </div>
+            </div>
+
+            <!-- Formulaire de Contact avec Indicatif Pays & Téléphone -->
+            <div>
+                <h2 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--accent-color);">
+                    ✉️ Envoyer un Message Direct
+                </h2>
+
+                <form id="contact-form" class="card" style="display: flex; flex-direction: column; gap: 16px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 6px; font-weight: 500;">Nom complet *</label>
+                        <input type="text" id="nom" required placeholder="Votre nom" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none;">
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 6px; font-weight: 500;">Adresse e-mail *</label>
+                        <input type="email" id="email" required placeholder="nom@exemple.com" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none;">
+                    </div>
+
+                    <!-- Champ Numéro de Téléphone avec Indicatif Pays -->
+                    <div>
+                        <label style="display: block; margin-bottom: 6px; font-weight: 500;">Téléphone & Indicatif pays</label>
+                        <div style="display: flex; gap: 10px;">
+                            <select id="code_pays" style="width: 35%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none;">
+                                <option value="+33">🇫🇷 France (+33)</option>
+                                <option value="+229">🇧🇯 Bénin (+229)</option>
+                                <option value="+1">🇺🇸/🇨🇦 USA/Canada (+1)</option>
+                                <option value="+44">🇬🇧 Royaume-Uni (+44)</option>
+                                <option value="+49">🇩🇪 Allemagne (+49)</option>
+                                <option value="+225">🇨🇮 Côte d'Ivoire (+225)</option>
+                                <option value="+221">🇸🇳 Sénégal (+221)</option>
+                                <option value="autre">Autre indicatif</option>
+                            </select>
+                            <input type="tel" id="telephone" placeholder="6 00 00 00 00" style="width: 65%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none;">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 6px; font-weight: 500;">Sujet *</label>
+                        <input type="text" id="sujet" required placeholder="Ex: Proposition de stage / alternance / Projet Data" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none;">
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 6px; font-weight: 500;">Message *</label>
+                        <textarea id="message" rows="4" required placeholder="Votre message..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none;"></textarea>
+                    </div>
+
+                    <button type="submit" style="padding: 12px 20px; border-radius: 8px; border: none; background: var(--accent-color); color: #000; font-weight: bold; cursor: pointer; font-size: 1rem;">
+                        Envoyer le message
+                    </button>
+
+                    <div id="form-status" style="margin-top: 10px; font-weight: 500;"></div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Pacôme Donan SODAZINDJI. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Script JavaScript Unique -->
+    <script src="main.js"></script>
+</body>
+</html>

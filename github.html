@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets Open-Source & GitHub | Pacôme Donan SODAZINDJI</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Icônes FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- Barre de Navigation Multi-Pages -->
+    <header class="navbar">
+        <a href="index.html" class="logo">Pacôme<span>.SODAZINDJI</span></a>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="projets.html">Projets Clients & SI</a></li>
+                <li><a href="github.html" class="active">Projets GitHub</a></li>
+                <li><a href="interventions.html">Interventions & Prix</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <!-- Bouton Basculeur Thème Sombre / Clair -->
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer de thème">
+                <i class="fas fa-sun"></i>
+            </button>
+
+            <!-- Liens Réseaux Sociaux -->
+            <div class="social-icons">
+                <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Paco-clod" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section style="margin-bottom: 40px;">
+            <h1 class="page-title"><i class="fab fa-github"></i> Dépôts & Code Open-Source</h1>
+            <p class="page-subtitle">
+                Projets synchronisés en temps réel via l'API GitHub de mon profil (Paco-clod).
+            </p>
+        </section>
+
+        <!-- Projets Propres Phares (Exemples d'Ancrage) -->
+        <section style="margin-bottom: 50px;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-color);">
+                🌟 Projets Data & IA Mises en Avant
+            </h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>AgroClimat</h3>
+                    <p>L'IA au service de la résilience climatique en Afrique : anticiper les phénomènes naturels pour protéger l'agriculture.</p>
+                    <a href="https://agroclimat.streamlit.app/" target="_blank" style="display:inline-block; margin-top:15px; color:var(--accent-color); font-weight:bold; text-decoration:none;">
+                        Tester le prototype Streamlit →
+                    </a>
+                </div>
+
+                <div class="card">
+                    <h3>Credit-Scoring-and-Segmentation</h3>
+                    <p>Projet de segmentation permettant aux institutions financières d'évaluer le risque de crédit et de prendre des décisions éclairées.</p>
+                    <a href="https://github.com/Paco-clod" target="_blank" style="display:inline-block; margin-top:15px; color:var(--accent-color); font-weight:bold; text-decoration:none;">
+                        Voir sur GitHub →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conteneur Injecté Dynamiquement par main.js -->
+        <section>
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-color);">
+                ⚡ Tous mes Dépôts GitHub Récents
+            </h2>
+            <div id="github-projects-container" class="grid-container">
+                <p>Chargement des projets depuis GitHub...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Pacôme Donan SODAZINDJI. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Script JavaScript Unique -->
+    <script src="main.js"></script>
+</body>
+</html>
