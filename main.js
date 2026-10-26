@@ -2,143 +2,139 @@
    PORTFOLIO PACÔME SODAZINDJI - SCRIPT UNIQUE
    ========================================================================== */
 
+const API_BASE_URL = "https://api-pacome-sodazindji-a4dsedfrfncaf3dq.belgiumcentral-01.azurewebsites.net";
+
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
+    initProjectFilters();
     initGithubProjects();
+    initContactForm();
 });
 
-/**
- * 1. Gestion du Basculement Thème Sombre / Thème Clair
- */
 function initTheme() {
     const themeBtn = document.getElementById("theme-toggle");
     if (!themeBtn) return;
 
-    // Récupérer le choix sauvegardé ou garder "dark" par défaut
-    const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
+    const savedTheme = localStorage.getItem("portfolio-theme");
     if (savedTheme === "light") {
         document.body.classList.add("light-theme");
-        themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
     }
 
+    updateThemeButton(themeBtn);
     themeBtn.addEventListener("click", () => {
-        document.body.classList.toggle("light-theme");
-        const isLight = document.body.classList.contains("light-theme");
-
-        // Sauvegarder la préférence de l'utilisateur
+        const isLight = document.body.classList.toggle("light-theme");
         localStorage.setItem("portfolio-theme", isLight ? "light" : "dark");
-        themeBtn.innerHTML = isLight ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        updateThemeButton(themeBtn);
     });
 }
 
-/**
- * 2. Chargement automatique des Projets GitHub (Pour la page github.html)
- */
-/**
- * Chargement exhaustif de TOUS les dépôts GitHub (Paco-clod)
- */
+function updateThemeButton(button) {
+    const isLight = document.body.classList.contains("light-theme");
+    button.innerHTML = isLight
+        ? '<i class="fas fa-moon" aria-hidden="true"></i>'
+        : '<i class="fas fa-sun" aria-hidden="true"></i>';
+    button.setAttribute("aria-label", isLight ? "Activer le thème sombre" : "Activer le thème clair");
+    button.setAttribute("aria-pressed", String(isLight));
+}
+
+function initProjectFilters() {
+    const buttons = document.querySelectorAll("[data-filter]");
+    const projects = document.querySelectorAll(".project-item");
+    if (!buttons.length || !projects.length) return;
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const filter = button.dataset.filter;
+            buttons.forEach((item) => {
+                item.classList.toggle("active", item === button);
+                item.setAttribute("aria-pressed", String(item === button));
+            });
+            projects.forEach((project) => {
+                project.hidden = filter !== "all" && !project.classList.contains(filter);
+            });
+        });
+    });
+}
+
 async function initGithubProjects() {
     const container = document.getElementById("github-projects-container");
     if (!container) return;
 
     try {
-        // per_page=100 permet d'extraire la totalité de votre catalogue GitHub
-        const response = await fetch("https://api.github.com/users/Paco-clod/repos?sort=updated&per_page=100");
-        const repos = await response.json();
+        const response = await fetch(
+            "https://api.github.com/users/Paco-clod/repos?sort=updated&per_page=100"
+        );
+        if (!response.ok) {
+            throw new Error(`GitHub API: ${response.status}`);
+        }
 
-        container.innerHTML = "";
-        repos.forEach(repo => {
-            const card = document.createElement("div");
-            card.className = "card";
+        const repos = await response.json();
+        if (!Array.isArray(repos)) {
+            throw new Error("Réponse GitHub invalide");
+        }
+
+        container.replaceChildren();
+        if (!repos.length) {
+            container.innerHTML = "<p>Aucun dépôt public à afficher.</p>";
+            return;
+        }
+
+        repos.forEach((repo) => {
+            const card = document.createElement("article");
+            card.className = "card github-card";
             card.innerHTML = `
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                    <h3 style="margin:0; font-size:1.1rem;">${repo.name}</h3>
-                    <span style="font-size:0.8rem; color:var(--accent-color);"><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+                <div class="github-card-header">
+                    <h3>${escapeHtml(repo.name)}</h3>
+                    <span class="repo-stars"><i class="fas fa-star" aria-hidden="true"></i> ${repo.stargazers_count}</span>
                 </div>
-                <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:15px;">
-                    ${repo.description || "Dépôt de code source et projet logiciel."}
-                </p>
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span class="badge-tech">${repo.language || "Multi-langages"}</span>
-                    <a href="${repo.html_url}" target="_blank" style="color:var(--accent-color); text-decoration:none; font-weight:bold; font-size:0.85rem;">
-                        Code Source →
+                <p>${escapeHtml(repo.description || "Dépôt de code source et projet logiciel.")}</p>
+                <div class="github-card-footer">
+                    <span class="badge-tech">${escapeHtml(repo.language || "Multi-langages")}</span>
+                    <a href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer">
+                        Code source <span aria-hidden="true">→</span>
                     </a>
                 </div>
             `;
             container.appendChild(card);
         });
     } catch (error) {
-        container.innerHTML = "<p>Erreur lors du chargement complet des dépôts GitHub.</p>";
+        console.error("Impossible de charger les dépôts GitHub.", error);
+        container.innerHTML = "<p class=\"error-message\">Les dépôts GitHub sont momentanément indisponibles.</p>";
     }
 }
 
-/**
- * 3. Gestionnaire d'envoi du formulaire de contact avec Indicatif Téléphonique
- */
-document.addEventListener("DOMContentLoaded", () => {
+function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    }[character]));
+}
+
+function initContactForm() {
     const contactForm = document.getElementById("contact-form");
     if (!contactForm) return;
 
-    contactForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    contactForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
         const statusDiv = document.getElementById("form-status");
-
+        const submitButton = contactForm.querySelector("button[type='submit']");
         const codePays = document.getElementById("code_pays").value;
-        const numTel = document.getElementById("telephone").value;
+        const numTel = document.getElementById("telephone").value.trim();
 
         const formData = {
-            nom: document.getElementById("nom").value,
-            email: document.getElementById("email").value,
+            nom: document.getElementById("nom").value.trim(),
+            email: document.getElementById("email").value.trim(),
             telephone: numTel ? `${codePays} ${numTel}` : "Non renseigné",
-            sujet: document.getElementById("sujet").value,
-            message: document.getElementById("message").value
+            sujet: document.getElementById("sujet").value.trim(),
+            message: document.getElementById("message").value.trim()
         };
 
-        try {
-            const response = await fetch("http://127.0.0.1:8000/api/v1/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
-            });
-
-            if (response.ok) {
-                statusDiv.style.color = "#22c55e";
-                statusDiv.innerText = "Message envoyé avec succès !";
-                contactForm.reset();
-            } else {
-                throw new Error("Erreur serveur");
-            }
-        } catch (error) {
-            statusDiv.style.color = "#ef4444";
-            statusDiv.innerText = "Message enregistré en local (l'API Backend sera connectée sous peu).";
-        }
-    });
-});
-
-// URL de votre API de production sur Azure (ou via votre sous-domaine Namecheap api.sodazindj-pacome.me)
-const API_BASE_URL = "https://api-pacome-sodazindji-a4dsedfrfncaf3dq.belgiumcentral-01.azurewebsites.net";
-
-/**
- * Gestionnaire d'envoi du formulaire de contact avec l'API Azure + MongoDB Atlas
- */
-document.addEventListener("DOMContentLoaded", () => {
-    const contactForm = document.getElementById("contact-form");
-    if (!contactForm) return;
-
-    contactForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const statusDiv = document.getElementById("form-status");
-
-        const codePays = document.getElementById("code_pays").value;
-        const numTel = document.getElementById("telephone").value;
-
-        const formData = {
-            nom: document.getElementById("nom").value,
-            email: document.getElementById("email").value,
-            telephone: numTel ? `${codePays} ${numTel}` : "Non renseigné",
-            sujet: document.getElementById("sujet").value,
-            message: document.getElementById("message").value
-        };
+        submitButton.disabled = true;
+        statusDiv.textContent = "Envoi en cours…";
+        statusDiv.className = "form-status";
 
         try {
             const response = await fetch(`${API_BASE_URL}/api/v1/contact`, {
@@ -146,17 +142,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
             });
-
-            if (response.ok) {
-                statusDiv.style.color = "#22c55e";
-                statusDiv.innerText = "Message envoyé avec succès !";
-                contactForm.reset();
-            } else {
-                throw new Error("Erreur serveur");
+            if (!response.ok) {
+                throw new Error(`API contact: ${response.status}`);
             }
+
+            statusDiv.textContent = "Message envoyé avec succès !";
+            statusDiv.classList.add("success");
+            contactForm.reset();
         } catch (error) {
-            statusDiv.style.color = "#ef4444";
-            statusDiv.innerText = "Erreur lors de la transmission du message.";
+            console.error("Erreur lors de l'envoi du formulaire.", error);
+            statusDiv.textContent = "Erreur lors de la transmission du message. Réessayez plus tard.";
+            statusDiv.classList.add("error");
+        } finally {
+            submitButton.disabled = false;
         }
     });
-});
+}

@@ -1,4 +1,15 @@
+# Environment and secrets
 .env
-backend/.env
+*.env
+!.env.example
+
+# Python
 __pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# IDE
 .idea/

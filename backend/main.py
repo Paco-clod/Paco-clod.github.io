@@ -35,10 +35,11 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://sodazindj-pacome.me",
-        "https://Paco-clod.github.io",
+        "https://www.sodazindj-pacome.me",
+        "https://paco-clod.github.io",
         "http://127.0.0.1:5500",
         "http://localhost:3000",
-        "*"
+        "http://localhost:5500"
     ],
     allow_credentials=True,
     allow_methods=["*"],

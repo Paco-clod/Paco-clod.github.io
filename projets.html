@@ -3,145 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets Clients & SI | Pacôme Donan SODAZINDJI</title>
+    <title>Réalisations & Projets | Pacôme Donan SODAZINDJI</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Icônes FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
-    <!-- Barre de Navigation Multi-Pages -->
     <header class="navbar">
         <a href="index.html" class="logo">Pacôme<span>.SODAZINDJI</span></a>
-
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html">Accueil</a></li>
-                <li><a href="projets.html" class="active">Projets Clients & SI</a></li>
+                <li><a href="projets.html" class="active">Réalisations & Projets</a></li>
                 <li><a href="github.html">Projets GitHub</a></li>
                 <li><a href="interventions.html">Interventions & Prix</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-
         <div class="header-actions">
-            <!-- Bouton Basculeur Thème Sombre / Clair -->
-            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer de thème">
-                <i class="fas fa-sun"></i>
+            <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Activer le thème clair">
+                <i class="fas fa-sun" aria-hidden="true"></i>
             </button>
-
-            <!-- Liens Réseaux Sociaux -->
             <div class="social-icons">
-                <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Paco-clod" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://github.com/Paco-clod" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
             </div>
         </div>
     </header>
-<!-- Filtres de Catégories (Boutons Onglets) -->
-<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px;">
-    <button class="filter-btn active" onclick="filterProjects('all')">Tous les Projets</button>
-    <button class="filter-btn" onclick="filterProjects('data-ia')">📊 Data & Intelligence Artificielle</button>
-    <button class="filter-btn" onclick="filterProjects('web-mobile')">💻 Dev Web, Mobile & SEO</button>
-    <button class="filter-btn" onclick="filterProjects('si-consulting')">🏛️ Consulting SI & Transformation Digitalisation</button>
-</div>
 
-<!-- Grille des Projets Classés -->
-<div class="grid-container">
-    <!-- Projet Data & IA -->
-    <div class="card project-item data-ia">
-        <span class="badge-tech">Data & IA</span>
-        <h3>AgroClimat — Résilience Climatique</h3>
-        <p>Intelligence artificielle pour anticiper les phénomènes climatiques et protéger l'agriculture[cite: 4].</p>
-        <a href="https://agroclimat.streamlit.app/" target="_blank" class="btn-link">Tester le prototype Streamlit →</a>
-    </div>
-
-    <!-- Projet Web & Mobile -->
-    <div class="card project-item web-mobile">
-        <span class="badge-tech">Dev Web</span>
-        <h3>FASEG & CRECI-UP — Université de Parakou</h3>
-        <p>Conception, développement technique et optimisation SEO de 3 plateformes académiques[cite: 8].</p>
-    </div>
-
-    <!-- Projet SI & Consulting -->
-    <div class="card project-item si-consulting">
-        <span class="badge-tech">Consulting SI</span>
-        <h3>Digitalisation des e-Services (GIZ)</h3>
-        <p>Analyse des besoins fonctionnels et dématérialisation des services publics ministériels[cite: 4].</p>
-    </div>
-</div>
-    <!-- Main Content -->
     <main class="container">
-        <section style="margin-bottom: 40px;">
-            <h1 class="page-title">Catalogue de Projets Clients & SI</h1>
-            <p class="page-subtitle">
-                Projets d'ingénierie, numérisation de processus métier, études de marché et conseils en transformation digitale.
-            </p>
+        <section class="page-intro">
+            <h1 class="page-title">Réalisations & Projets</h1>
+            <p class="page-subtitle">Data & IA, développement digital et transformation des systèmes d'information.</p>
         </section>
 
+        <div class="project-filters" role="group" aria-label="Filtrer les projets">
+            <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">Tous les projets</button>
+            <button class="filter-btn" type="button" data-filter="data-ia" aria-pressed="false">Data & Intelligence Artificielle</button>
+            <button class="filter-btn" type="button" data-filter="web-mobile" aria-pressed="false">Développement Web, Mobile & SEO</button>
+            <button class="filter-btn" type="button" data-filter="si-consulting" aria-pressed="false">Consulting SI & Digitalisation</button>
+        </div>
+
         <div class="grid-container">
-
-            <!-- AXI'HOM -->
-            <div class="card">
-                <i class="fas fa-brain" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;"></i>
-                <h3>Co-Promoteur & Architecte — AXI'HOM</h3>
-                <p style="color: var(--accent-color); font-weight: 500; font-size: 0.9rem; margin-bottom: 10px;">Plateforme d'Orientation du Capital Humain (Marque aux Trophées Republik RH 2026)</p>
-                <p>Plateforme stratégique d'évaluation et d'orientation du capital humain pour accompagner les décideurs dans les recrutements et réformes de gouvernance.</p>
-                <div style="margin-top: 15px; font-size: 0.85rem; color: var(--text-secondary);">
-                    <strong>Liens :</strong> <a href="http://axi-hom.com" target="_blank" style="color: var(--accent-color);">axi-hom.com</a> | axi-hom.ai | axi-hom.net
-                </div>
-            </div>
-
-            <!-- GIZ & Ministère de la Justice -->
-            <div class="card">
-                <i class="fas fa-building-columns" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;"></i>
-                <h3>Consultant e-Services & Digitalisation</h3>
-                <p style="color: var(--accent-color); font-weight: 500; font-size: 0.9rem; margin-bottom: 10px;">GIZ (Coopération Allemande) & Ministères du Bénin</p>
-                <p>Dématérialisation des services publics pour le MJL, MAEP, MTFP et MS. Analyse des besoins fonctionnels, sécurisation des flux et protection des données personnelles.</p>
-            </div>
-
-            <!-- Loterie Nationale du Bénin -->
-            <div class="card">
-                <i class="fas fa-user-gear" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;"></i>
-                <h3>Consultant Digitalisation RH</h3>
-                <p style="color: var(--accent-color); font-weight: 500; font-size: 0.9rem; margin-bottom: 10px;">Loterie Nationale du Bénin S.A (LNB)</p>
-                <p>Diagnostic et dématérialisation des procédures administratives, développement et paramétrage d'outils numériques de gestion de carrières et du personnel.</p>
-            </div>
-
-            <!-- K-POLYGONE PROPERTIES -->
-            <div class="card">
-                <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;"></i>
-                <h3>Étude de Faisabilité Hôtelière & BI</h3>
-                <p style="color: var(--accent-color); font-weight: 500; font-size: 0.9rem; margin-bottom: 10px;">K-POLYGONE PROPERTIES & GDB & ASSOCIÉS</p>
-                <p>Conception d'outils de collecte, analyse de marché technico-économique à Azowlissè et modélisation d'un tableau de bord décisionnel sur Power BI.</p>
-            </div>
-
-            <!-- VSOFT CORPORATION (Plateformes Institutionnelles) -->
-            <div class="card">
-                <i class="fas fa-globe" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;"></i>
-                <h3>Développement Web & SEO Institutionnel</h3>
-                <p style="color: var(--accent-color); font-weight: 500; font-size: 0.9rem; margin-bottom: 10px;">VSOFT CORPORATION & Universités</p>
-                <p>Conception et optimisation de plateformes web stratégiques : site officiel de la FASEG (Université de Parakou), plateforme CRECI-UP et Sauver l'Éducation.</p>
-            </div>
-
-            <!-- APG DEO GRATIAS -->
-            <div class="card">
-                <i class="fas fa-server" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;"></i>
-                <h3>Consultant IT & Infrastructure OVHCloud</h3>
-                <p style="color: var(--accent-color); font-weight: 500; font-size: 0.9rem; margin-bottom: 10px;">APG DEO GRATIAS BUSINESS</p>
-                <p>Mise en place de la présence digitale, configuration des comptes Google Analytics, gestion du nom de domaine et déploiement de boîtes mails professionnelles via OVHCloud.</p>
-            </div>
-
+            <article class="card project-item data-ia">
+                <span class="badge-tech">Data & IA</span>
+                <h2>AgroClimat — Résilience climatique</h2>
+                <p>Intelligence artificielle pour anticiper les phénomènes climatiques et protéger l'agriculture.</p>
+                <a href="https://agroclimat.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-link">Tester le prototype Streamlit →</a>
+            </article>
+            <article class="card project-item data-ia">
+                <span class="badge-tech">Data & IA</span>
+                <h2>Credit Scoring & Segmentation</h2>
+                <p>Segmentation et évaluation du risque de crédit pour éclairer les décisions des institutions financières.</p>
+            </article>
+            <article class="card project-item web-mobile">
+                <span class="badge-tech">Web, mobile & SEO</span>
+                <h2>FASEG, CRECI-UP & VSOFT</h2>
+                <p>Conception, développement technique et optimisation SEO de plateformes institutionnelles et académiques.</p>
+            </article>
+            <article class="card project-item si-consulting">
+                <span class="badge-tech">Consulting SI</span>
+                <h2>e-Services publics — GIZ</h2>
+                <p>Analyse fonctionnelle et dématérialisation des services publics ministériels, avec sécurisation des flux.</p>
+            </article>
+            <article class="card project-item si-consulting">
+                <span class="badge-tech">Consulting SI & RH</span>
+                <h2>Digitalisation RH — LNB</h2>
+                <p>Diagnostic et dématérialisation des procédures de gestion des carrières et du personnel.</p>
+            </article>
+            <article class="card project-item si-consulting">
+                <span class="badge-tech">SI & BI</span>
+                <h2>K-POLYGONE & AXI'HOM</h2>
+                <p>Étude de faisabilité, tableaux de bord décisionnels et orientation stratégique du capital humain.</p>
+            </article>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Pacôme Donan SODAZINDJI. Tous droits réservés.</p>
-    </footer>
-
-    <!-- Script JavaScript Unique -->
+    <footer><p>© 2026 Pacôme Donan SODAZINDJI. Tous droits réservés.</p></footer>
     <script src="main.js"></script>
 </body>
 </html>
