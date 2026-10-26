@@ -14,7 +14,10 @@
     <header class="navbar">
         <a href="index.html" class="logo">Pacôme<span>.SODAZINDJI</span></a>
 
-        <nav>
+        <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="site-navigation">
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Accueil</a></li>
                 <li><a href="projets.html">Réalisations & Projets</a></li>
@@ -41,24 +44,30 @@
     </header>
     <!-- Hero Section -->
     <main class="container">
-        <section class="hero-section" style="text-align: center; margin-bottom: 60px;">
+        <section class="hero-section">
             <p style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
                 Master 1 Big Data & Intelligence Artificielle - ESIEE-IT
             </p>
-            <h1 class="page-title" style="font-size: 3rem; margin-top: 10px;">Pacôme Donan SODAZINDJI</h1>
-            <section class="about-section" aria-labelledby="about-title">
-                <h2 id="about-title">À propos de moi</h2>
-                <p>
-                    Responsable Système d'Information et consultant en transformation numérique, je poursuis un Master 1 Big Data & IA à l'ESIEE-IT (Pontoise).
-                    Je recherche un stage de M1 à partir d'avril 2027, puis une alternance de M2 à partir de septembre 2027.
-                </p>
-            </section>
-            <p class="page-subtitle" style="max-width: 750px; margin: 15px auto 30px;">
-                Responsable Système d'Information & Consultant en Transformation Numérique. Spécialisé en Data Science, Architecture Cloud et Ingénierie des Données.
-            </p>
-            <p class="availability" style="background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent-color); padding: 12px 20px; border-radius: 8px; display: inline-block; font-size: 0.95rem;">
-                🎯 <strong>Recherche :</strong> Stage M1 (Avril 2027) & Alternance M2 (Septembre 2027) en Data Engineering, BI ou Gestion de Projet Data & IA.
-            </p>
+            <div class="hero-profile">
+                <div class="profile-photo-wrap">
+                    <img src="assets/photo_pro.jpg" alt="Pacôme SODAZINDJI, Conseiller en Systèmes d'Information">
+                </div>
+                <div class="profile-content">
+                    <p class="eyebrow">Conseiller en Systèmes d'Information · Data · IA</p>
+                    <h1 class="page-title">Pacôme Donan SODAZINDJI</h1>
+                    <h2 id="about-title">À propos de moi</h2>
+                    <p class="profile-description">
+                        Pacôme SODAZINDJI est Conseiller en Systèmes d’Information chez GDB & ASSOCIÉS, spécialisé en data science, intelligence artificielle et technologies de l’information. Fort d’une solide formation en Génie Télécoms et TIC, il s’est perfectionné à travers de prestigieuses certifications en Data Analytics, IA et Business Analysis, obtenues auprès d’institutions de référence telles que Sorbonne Université, IBM et Microsoft. Il dispose d’une expérience significative en gestion de projets IT, en analyse de données et en développement technologique.
+                    </p>
+                    <p class="profile-description">
+                        Au sein de GDB & ASSOCIÉS, il intervient en tant que consultant stratégique, en pilotant des projets complexes liés aux systèmes d’information, à la visualisation des données et à l’automatisation des processus. Pacôme a contribué à des initiatives d’envergure, notamment dans les domaines de la télésanté et de l’AgroClimat, intégrant des solutions d’intelligence artificielle pour améliorer la résilience agricole face aux effets du changement climatique.
+                    </p>
+                    <p class="profile-description">
+                        En 2024, il a été lauréat du 2ᵉ Prix DSI Awards dans la catégorie Data Science, IA et Agriculture, récompensant son impact en matière d’innovation numérique au Bénin. Son expertise couvre Power BI, Python, SQL et AWS. Il réalise également des études de faisabilité pour des projets innovants, en mettant l’accent sur la durabilité, la scalabilité et la valeur ajoutée décisionnelle. Passionné par la transformation digitale, il incarne une approche centrée sur les données et tournée vers l’optimisation des performances organisationnelles.
+                    </p>
+                    <p class="availability">🎯 <strong>Recherche :</strong> Stage M1 (avril 2027) et alternance M2 (septembre 2027) en Data Engineering, BI ou gestion de projet Data & IA.</p>
+                </div>
+            </div>
         </section>
 
         <!-- Distinctions DSI Awards -->
@@ -76,13 +85,22 @@
                 </div>
 
                 <div class="card">
-                    <img class="award-image" src="assets/dsi_awards_agriculture.jpg" alt="2ème Prix Agriculture">
+                    <img class="award-image" src="assets/photo_with_awards.jpg" alt="Pacôme SODAZINDJI lors d'une remise de prix">
                     <i class="fas fa-award" style="font-size: 2rem; color: #eab308; margin-bottom: 15px;"></i>
                     <h3>Lauréat 2ème Prix - Agriculture</h3>
                     <p style="color: var(--accent-color); font-weight: 500; margin-bottom: 10px;">DSI Awards Bénin 2024 (Club DSI & EY)</p>
                     <p>Distinction accordée pour les travaux d'IA appliqués à la résilience climatique et au développement agricole (Projet AgroClimat).</p>
                 </div>
             </div>
+        </section>
+
+        <section class="visual-story" aria-labelledby="visual-story-title">
+            <div class="visual-story-copy">
+                <p class="eyebrow">Une expertise incarnée</p>
+                <h2 id="visual-story-title">Du conseil SI à l'innovation Data & IA</h2>
+                <p>Mon parcours associe pilotage de projets IT, analyse de données et développement de solutions technologiques à fort impact.</p>
+            </div>
+            <img src="assets/photo_de_profil.jpeg" alt="Portrait professionnel de Pacôme SODAZINDJI">
         </section>
 
         <!-- Parcours & Certifications -->
@@ -113,8 +131,11 @@
     </main>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2026 Pacôme Donan SODAZINDJI. Tous droits réservés.</p>
+    <footer class="site-footer">
+        <div><strong>Pacôme SODAZINDJI</strong><p>Conseiller SI · Data Science · Intelligence Artificielle</p></div>
+        <div class="footer-links"><a href="projets.html">Réalisations</a><a href="github.html">GitHub</a><a href="interventions.html">Distinctions</a><a href="contact.html">Contact</a></div>
+        <div class="footer-social"><a href="mailto:comepaco0@gmail.com">comepaco0@gmail.com</a><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+        <p class="copyright">© 2026 Pacôme Donan SODAZINDJI. Tous droits réservés.</p>
     </footer>
 
     <!-- Script JavaScript Unique -->

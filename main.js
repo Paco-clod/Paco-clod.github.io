@@ -6,10 +6,33 @@ const API_BASE_URL = "https://api-pacome-sodazindji-a4dsedfrfncaf3dq.belgiumcent
 
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
+    initMobileMenu();
     initProjectFilters();
     initGithubProjects();
     initContactForm();
 });
+
+function initMobileMenu() {
+    const menuButton = document.getElementById("menu-toggle");
+    const navigation = document.getElementById("site-navigation");
+    if (!menuButton || !navigation) return;
+
+    menuButton.addEventListener("click", () => {
+        const isOpen = navigation.classList.toggle("is-open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+        document.body.classList.toggle("menu-open", isOpen);
+    });
+
+    navigation.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            navigation.classList.remove("is-open");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.setAttribute("aria-label", "Ouvrir le menu");
+            document.body.classList.remove("menu-open");
+        });
+    });
+}
 
 function initTheme() {
     const themeBtn = document.getElementById("theme-toggle");
