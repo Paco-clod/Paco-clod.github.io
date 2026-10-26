@@ -131,6 +131,7 @@ img {
 
 .logo span {
     color: var(--accent-color);
+    margin-left: 4px;
 }
 
 .nav-links {
@@ -229,6 +230,7 @@ img {
     gap: 48px;
     align-items: stretch;
     text-align: left;
+    min-height: 620px;
 }
 
 .profile-photo-wrap {
@@ -249,7 +251,8 @@ img {
 
 .profile-content .page-title {
     margin: 8px 0 18px;
-    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    max-width: 720px;
+    font-size: clamp(2rem, 4vw, 3.5rem);
     line-height: 1.1;
 }
 
@@ -287,6 +290,8 @@ img {
 .profile-description {
     margin-bottom: 14px;
     color: var(--text-secondary);
+    text-align: justify;
+    hyphens: auto;
 }
 
 .availability {
@@ -371,6 +376,43 @@ img {
     transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
+.timeline-type {
+    display: inline-block;
+    margin-bottom: 6px;
+    color: var(--accent-color);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.timeline-item.diploma {
+    border-left: 4px solid #38bdf8;
+    background: linear-gradient(110deg, var(--bg-card), rgba(56, 189, 248, 0.1));
+}
+
+.timeline-item.certification {
+    border-left: 4px solid #a78bfa;
+    background: linear-gradient(110deg, var(--bg-card), rgba(167, 139, 250, 0.09));
+}
+
+.timeline-item.certification .timeline-marker {
+    border-color: #a78bfa;
+    color: #a78bfa;
+}
+
+.timeline-item.certification .timeline-type {
+    color: #a78bfa;
+}
+
+.timeline-item.diploma:hover {
+    box-shadow: 0 12px 30px -18px #38bdf8;
+}
+
+.timeline-item.certification:hover {
+    box-shadow: 0 12px 30px -18px #a78bfa;
+}
+
 .timeline-item:hover {
     border-color: var(--accent-color);
     transform: translateX(6px);
@@ -398,11 +440,45 @@ img {
 
 .timeline-item p {
     color: var(--text-secondary);
+    text-align: justify;
 }
 
 .timeline-current {
     border-color: var(--accent-color);
     background: linear-gradient(110deg, var(--bg-card), rgba(56, 189, 248, 0.12));
+}
+
+.next-step {
+    position: relative;
+    max-width: 900px;
+    margin: 70px auto 0;
+    padding: 38px;
+    overflow: hidden;
+    border: 1px solid var(--accent-color);
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), var(--bg-card));
+    box-shadow: 0 18px 50px -35px var(--accent-color);
+}
+
+.next-step h2 {
+    margin: 8px 0 12px;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.next-step > p:not(.eyebrow) {
+    max-width: 680px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.next-step-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
 }
 
 @keyframes availability-pulse {
@@ -531,6 +607,7 @@ img {
 .card p {
     color: var(--text-secondary);
     overflow-wrap: anywhere;
+    text-align: justify;
 }
 
 .award-image {
@@ -539,6 +616,66 @@ img {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
+}
+
+.project-visual {
+    display: flex;
+    min-height: 150px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: -25px -25px 22px;
+    padding: 24px;
+    overflow: hidden;
+    color: #fff;
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(135deg, #0f172a, #0369a1);
+}
+
+.project-visual i {
+    font-size: 3.2rem;
+    opacity: 0.9;
+    transition: transform 0.35s ease;
+}
+
+.project-visual span {
+    align-self: flex-end;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.card:hover .project-visual i {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+.project-visual-agro {
+    background: linear-gradient(135deg, #14532d, #65a30d);
+}
+
+.project-visual-credit {
+    background: linear-gradient(135deg, #312e81, #7c3aed);
+}
+
+.project-visual-web {
+    background: linear-gradient(135deg, #0c4a6e, #06b6d4);
+}
+
+.project-visual-capital {
+    background: linear-gradient(135deg, #172554, #2563eb);
+}
+
+.project-visual-public {
+    background: linear-gradient(135deg, #164e63, #0891b2);
+}
+
+.project-visual-hr {
+    background: linear-gradient(135deg, #4c1d95, #a855f7);
+}
+
+.project-visual-strategy {
+    background: linear-gradient(135deg, #422006, #d97706);
 }
 
 .calendly-card {
@@ -801,6 +938,7 @@ button:disabled {
     .hero-profile {
         grid-template-columns: 1fr;
         gap: 28px;
+        min-height: 0;
     }
 
     .profile-photo-wrap {
@@ -819,6 +957,15 @@ button:disabled {
 
     .profile-content .page-title {
         font-size: 2.25rem;
+    }
+
+    .profile-description {
+        text-align: left;
+    }
+
+    .next-step {
+        margin-top: 45px;
+        padding: 26px 18px;
     }
 
     .availability-actions,
