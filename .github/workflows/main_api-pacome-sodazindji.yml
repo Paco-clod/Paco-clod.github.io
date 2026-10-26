@@ -52,4 +52,4 @@ jobs:
         with:
           app-name: 'api-pacome-sodazindji'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_91653C72D7A5477B96A88939D461FBCB }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
