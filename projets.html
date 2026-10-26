@@ -39,7 +39,38 @@
             </div>
         </div>
     </header>
+<!-- Filtres de Catégories (Boutons Onglets) -->
+<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px;">
+    <button class="filter-btn active" onclick="filterProjects('all')">Tous les Projets</button>
+    <button class="filter-btn" onclick="filterProjects('data-ia')">📊 Data & Intelligence Artificielle</button>
+    <button class="filter-btn" onclick="filterProjects('web-mobile')">💻 Dev Web, Mobile & SEO</button>
+    <button class="filter-btn" onclick="filterProjects('si-consulting')">🏛️ Consulting SI & Transformation Digitalisation</button>
+</div>
 
+<!-- Grille des Projets Classés -->
+<div class="grid-container">
+    <!-- Projet Data & IA -->
+    <div class="card project-item data-ia">
+        <span class="badge-tech">Data & IA</span>
+        <h3>AgroClimat — Résilience Climatique</h3>
+        <p>Intelligence artificielle pour anticiper les phénomènes climatiques et protéger l'agriculture[cite: 4].</p>
+        <a href="https://agroclimat.streamlit.app/" target="_blank" class="btn-link">Tester le prototype Streamlit →</a>
+    </div>
+
+    <!-- Projet Web & Mobile -->
+    <div class="card project-item web-mobile">
+        <span class="badge-tech">Dev Web</span>
+        <h3>FASEG & CRECI-UP — Université de Parakou</h3>
+        <p>Conception, développement technique et optimisation SEO de 3 plateformes académiques[cite: 8].</p>
+    </div>
+
+    <!-- Projet SI & Consulting -->
+    <div class="card project-item si-consulting">
+        <span class="badge-tech">Consulting SI</span>
+        <h3>Digitalisation des e-Services (GIZ)</h3>
+        <p>Analyse des besoins fonctionnels et dématérialisation des services publics ministériels[cite: 4].</p>
+    </div>
+</div>
     <!-- Main Content -->
     <main class="container">
         <section style="margin-bottom: 40px;">

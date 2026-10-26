@@ -34,12 +34,16 @@ function initTheme() {
 /**
  * 2. Chargement automatique des Projets GitHub (Pour la page github.html)
  */
+/**
+ * Chargement exhaustif de TOUS les dépôts GitHub (Paco-clod)
+ */
 async function initGithubProjects() {
     const container = document.getElementById("github-projects-container");
-    if (!container) return; // Ne s'exécute que sur la page github.html
+    if (!container) return;
 
     try {
-        const response = await fetch("https://api.github.com/users/Paco-clod/repos?sort=updated&per_page=10");
+        // per_page=100 permet d'extraire la totalité de votre catalogue GitHub
+        const response = await fetch("https://api.github.com/users/Paco-clod/repos?sort=updated&per_page=100");
         const repos = await response.json();
 
         container.innerHTML = "";
@@ -47,19 +51,24 @@ async function initGithubProjects() {
             const card = document.createElement("div");
             card.className = "card";
             card.innerHTML = `
-                <h3>${repo.name}</h3>
-                <p>${repo.description || "Dépôt de code source et projet logiciel."}</p>
-                <p style="margin-top: 15px; font-size: 0.85rem; color: var(--accent-color);">
-                    <i class="fas fa-code"></i> ${repo.language || "Multi-langages"}
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <h3 style="margin:0; font-size:1.1rem;">${repo.name}</h3>
+                    <span style="font-size:0.8rem; color:var(--accent-color);"><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+                </div>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:15px;">
+                    ${repo.description || "Dépôt de code source et projet logiciel."}
                 </p>
-                <a href="${repo.html_url}" target="_blank" style="display:inline-block; margin-top:15px; color:var(--accent-color); text-decoration:none; font-weight:bold;">
-                    Consulter le code sur GitHub →
-                </a>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span class="badge-tech">${repo.language || "Multi-langages"}</span>
+                    <a href="${repo.html_url}" target="_blank" style="color:var(--accent-color); text-decoration:none; font-weight:bold; font-size:0.85rem;">
+                        Code Source →
+                    </a>
+                </div>
             `;
             container.appendChild(card);
         });
     } catch (error) {
-        container.innerHTML = "<p>Erreur lors de la récupération des dépôts GitHub.</p>";
+        container.innerHTML = "<p>Erreur lors du chargement complet des dépôts GitHub.</p>";
     }
 }
 
