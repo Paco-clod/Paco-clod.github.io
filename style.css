@@ -66,6 +66,7 @@ img {
     top: 0;
     z-index: 1000;
     min-width: 0;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .menu-toggle {
@@ -77,6 +78,9 @@ img {
     border-radius: 8px;
     background: transparent;
     cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
 .menu-toggle span {
@@ -85,6 +89,25 @@ img {
     margin: 5px 0;
     border-radius: 2px;
     background: var(--text-primary);
+    transform-origin: center;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.menu-toggle:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.menu-toggle.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 .logo {
@@ -370,6 +393,15 @@ footer {
     gap: 8px;
 }
 
+.footer-award-photo {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid var(--accent-color);
+    margin-bottom: 4px;
+}
+
 .site-footer a {
     color: var(--text-secondary);
     text-decoration: none;
@@ -498,7 +530,7 @@ button:disabled {
 
     .menu-toggle {
         display: block;
-        margin-left: auto;
+        flex: 0 0 42px;
     }
 
     .header-actions {
@@ -515,10 +547,15 @@ button:disabled {
         border-bottom: 1px solid var(--border-color);
         background: var(--bg-secondary);
         box-shadow: var(--shadow);
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
     .navbar nav.is-open {
         display: block;
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .nav-links {
@@ -532,6 +569,12 @@ button:disabled {
         padding: 10px 0;
         font-size: 0.9rem;
         border-bottom: 1px solid var(--border-color);
+        transition: color 0.2s ease, padding-left 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        padding-left: 8px;
     }
 
     .social-icons {
