@@ -1,3 +1,6 @@
-flask
+fastapi
+uvicorn[standard]
+gunicorn
 pymongo[srv]
-flask-cors
+pydantic[email]
+python-dotenv
