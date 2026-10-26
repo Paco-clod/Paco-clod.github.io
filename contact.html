@@ -68,9 +68,9 @@
                 <h2 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--accent-color);">
                     📅 Réserver un créneau (Agenda Synchronisé)
                 </h2>
-                <div class="card" style="padding: 10px; height: 650px; overflow: hidden;">
+                <div class="card calendly-card" style="padding: 10px; height: 650px; overflow: hidden;">
                     <!-- Widget Calendly avec votre lien exact -->
-                    <div class="calendly-inline-widget" data-url="https://calendly.com/comepaco0" style="min-width:320px;height:630px;"></div>
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/comepaco0"></div>
                 </div>
             </div>
 
@@ -94,8 +94,8 @@
                     <!-- Champ Numéro de Téléphone avec Indicatif Pays -->
                     <div>
                         <label style="display: block; margin-bottom: 6px; font-weight: 500;">Téléphone & Indicatif pays</label>
-                        <div style="display: flex; gap: 10px;">
-                            <select id="code_pays" style="width: 35%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none;">
+                        <div class="phone-row">
+                            <select id="code_pays" style="padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none;">
                                 <option value="+33">🇫🇷 France (+33)</option>
                                 <option value="+229">🇧🇯 Bénin (+229)</option>
                                 <option value="+1">🇺🇸/🇨🇦 USA/Canada (+1)</option>
@@ -105,7 +105,7 @@
                                 <option value="+221">🇸🇳 Sénégal (+221)</option>
                                 <option value="autre">Autre indicatif</option>
                             </select>
-                            <input type="tel" id="telephone" placeholder="6 00 00 00 00" style="width: 65%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none;">
+                            <input type="tel" id="telephone" placeholder="6 00 00 00 00" style="padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none;">
                         </div>
                     </div>
 

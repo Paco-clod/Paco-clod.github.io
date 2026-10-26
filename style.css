@@ -1,3 +1,7 @@
+html {
+    overflow-x: hidden;
+}
+
 /* ==========================================================================
    PORTFOLIO PACÔME SODAZINDJI - STYLES GLOBAUX
    ========================================================================== */
@@ -41,6 +45,8 @@ body {
     color: var(--text-primary);
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
+    min-width: 0;
+    overflow-x: hidden;
 }
 
 img {
@@ -59,6 +65,7 @@ img {
     position: sticky;
     top: 0;
     z-index: 1000;
+    min-width: 0;
 }
 
 .logo {
@@ -66,6 +73,7 @@ img {
     font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .logo span {
@@ -77,6 +85,7 @@ img {
     list-style: none;
     gap: 25px;
     align-items: center;
+    min-width: 0;
 }
 
 .nav-links a {
@@ -122,11 +131,14 @@ img {
     max-width: 1200px;
     margin: 0 auto;
     padding: 60px 20px;
+    width: 100%;
+    min-width: 0;
 }
 
 .page-title {
     font-size: 2.5rem;
     margin-bottom: 10px;
+    overflow-wrap: anywhere;
 }
 
 .page-subtitle {
@@ -181,6 +193,7 @@ img {
 
 .card p {
     color: var(--text-secondary);
+    overflow-wrap: anywhere;
 }
 
 .award-image {
@@ -189,6 +202,30 @@ img {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
+}
+
+.calendly-card {
+    min-width: 0;
+}
+
+.calendly-inline-widget {
+    width: 100%;
+    height: 630px;
+}
+
+.phone-row {
+    display: flex;
+    gap: 10px;
+}
+
+.phone-row select {
+    flex: 0 1 38%;
+    min-width: 0;
+}
+
+.phone-row input {
+    flex: 1 1 62%;
+    min-width: 0;
 }
 
 /* Footer */
@@ -282,14 +319,16 @@ button:disabled {
 
 @media (max-width: 900px) {
     .navbar {
-        align-items: flex-start;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
         gap: 15px;
     }
 
     .navbar nav {
         order: 3;
         width: 100%;
+        grid-column: 1 / -1;
     }
 
     .nav-links {
@@ -309,15 +348,20 @@ button:disabled {
 
     .logo {
         font-size: 1.15rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .nav-links {
-        justify-content: center;
-        gap: 8px 14px;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
     }
 
     .nav-links a {
+        display: block;
         font-size: 0.9rem;
+        padding: 6px 0;
     }
 
     .header-actions {
@@ -336,11 +380,34 @@ button:disabled {
         font-size: 2rem;
     }
 
+    .hero-section {
+        margin-bottom: 40px !important;
+    }
+
+    .hero-section .page-title {
+        font-size: 2.25rem !important;
+    }
+
+    .hero-section .availability {
+        display: block !important;
+        width: 100%;
+        max-width: 100%;
+    }
+
     .grid-container {
         grid-template-columns: 1fr;
     }
 
     .contact-grid {
         grid-template-columns: 1fr !important;
+    }
+
+    .phone-row {
+        gap: 6px;
+    }
+
+    .phone-row select {
+        flex-basis: 42%;
+        font-size: 0.8rem;
     }
 }
