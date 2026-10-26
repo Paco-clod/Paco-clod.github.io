@@ -105,3 +105,49 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// URL de votre API de production sur Azure (ou via votre sous-domaine Namecheap api.sodazindj-pacome.me)
+const API_BASE_URL = "https://api-pacome-sodazindji-a4dsedfrfncaf3dq.belgiumcentral-01.azurewebsites.net";
+
+/**
+ * Gestionnaire d'envoi du formulaire de contact avec l'API Azure + MongoDB Atlas
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    const contactForm = document.getElementById("contact-form");
+    if (!contactForm) return;
+
+    contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const statusDiv = document.getElementById("form-status");
+
+        const codePays = document.getElementById("code_pays").value;
+        const numTel = document.getElementById("telephone").value;
+
+        const formData = {
+            nom: document.getElementById("nom").value,
+            email: document.getElementById("email").value,
+            telephone: numTel ? `${codePays} ${numTel}` : "Non renseigné",
+            sujet: document.getElementById("sujet").value,
+            message: document.getElementById("message").value
+        };
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/v1/contact`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                statusDiv.style.color = "#22c55e";
+                statusDiv.innerText = "Message envoyé avec succès !";
+                contactForm.reset();
+            } else {
+                throw new Error("Erreur serveur");
+            }
+        } catch (error) {
+            statusDiv.style.color = "#ef4444";
+            statusDiv.innerText = "Erreur lors de la transmission du message.";
+        }
+    });
+});
