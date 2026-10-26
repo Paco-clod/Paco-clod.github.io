@@ -348,16 +348,16 @@ img {
 
 .timeline {
     position: relative;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding-left: 34px;
+    padding: 18px 0;
 }
 
 .timeline::before {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 13px;
+    left: 50%;
     width: 2px;
     content: "";
     background: linear-gradient(var(--accent-color), rgba(56, 189, 248, 0.08));
@@ -365,15 +365,30 @@ img {
 
 .timeline-item {
     position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 5px;
+    display: block;
+    width: calc(50% - 42px);
     margin-bottom: 18px;
     padding: 18px 20px;
     border: 1px solid var(--border-color);
     border-radius: 12px;
     background: var(--bg-card);
     transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.timeline-item.certification {
+    margin-right: auto;
+}
+
+.timeline-item.diploma {
+    margin-left: auto;
+}
+
+.timeline-item.certification {
+    text-align: right;
+}
+
+.timeline-item.diploma {
+    text-align: left;
 }
 
 .timeline-type {
@@ -421,7 +436,7 @@ img {
 .timeline-marker {
     position: absolute;
     top: 17px;
-    left: -42px;
+    left: auto;
     display: grid;
     width: 28px;
     height: 28px;
@@ -430,8 +445,40 @@ img {
     border-radius: 50%;
     color: var(--accent-color);
     background: var(--bg-primary);
-    font-size: 0.7rem;
+    font-size: 0.62rem;
     font-weight: 800;
+    transform: translateX(50%);
+}
+
+.timeline-item.certification .timeline-marker {
+    right: -56px;
+}
+
+.timeline-item.diploma .timeline-marker {
+    left: -56px;
+    transform: translateX(-50%);
+}
+
+.timeline-marker i {
+    font-size: 0.7rem;
+}
+
+.timeline-marker b {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 0.58rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.diploma .timeline-marker b {
+    color: #fff;
+}
+
+.certification .timeline-marker b {
+    color: #fff;
 }
 
 .timeline-item h3 {
@@ -459,6 +506,28 @@ img {
     text-align: center;
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), var(--bg-card));
     box-shadow: 0 18px 50px -35px var(--accent-color);
+}
+
+.next-step-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.next-step-columns > div {
+    padding: 22px;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.next-step-columns h3 {
+    margin-bottom: 8px;
+}
+
+.next-step-columns p {
+    min-height: 48px;
 }
 
 .next-step h2 {
@@ -676,6 +745,35 @@ img {
 
 .project-visual-strategy {
     background: linear-gradient(135deg, #422006, #d97706);
+}
+
+.project-visual-apg {
+    background: linear-gradient(135deg, #172554, #0ea5e9);
+}
+
+.project-brand {
+    min-height: 54px;
+    margin-bottom: 14px;
+    padding: 8px;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.project-brand img {
+    width: auto;
+    max-width: 180px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.project-caption {
+    font-style: italic;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .calendly-card {
@@ -957,6 +1055,34 @@ button:disabled {
 
     .profile-content .page-title {
         font-size: 2.25rem;
+    }
+
+    .timeline {
+        padding-left: 34px;
+    }
+
+    .timeline::before {
+        left: 13px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .timeline-item.certification .timeline-marker,
+    .timeline-item.diploma .timeline-marker {
+        left: -42px;
+        right: auto;
+        transform: none;
+    }
+
+    .next-step-columns {
+        grid-template-columns: 1fr;
     }
 
     .profile-description {
