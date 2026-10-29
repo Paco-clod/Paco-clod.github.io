@@ -250,10 +250,21 @@ img {
 }
 
 .profile-content .page-title {
-    margin: 8px 0 18px;
+    margin: 8px 0 14px;
     max-width: 720px;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    line-height: 1.1;
+    color: var(--text-primary);
+    font-size: clamp(2.1rem, 4.2vw, 3.7rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+}
+
+.professional-title {
+    margin: 0;
+    color: var(--accent-color);
+    font-size: clamp(0.9rem, 1.5vw, 1.12rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
 }
 
 .profile-name {
@@ -1112,7 +1123,11 @@ button:disabled {
     }
 
     .profile-content .page-title {
-        font-size: 2.25rem;
+        font-size: clamp(2rem, 9vw, 2.8rem);
+    }
+
+    .professional-title {
+        font-size: 0.9rem;
     }
 
     .timeline {
