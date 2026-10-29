@@ -265,6 +265,7 @@ img {
     font-weight: 700;
     letter-spacing: 0.02em;
     line-height: 1.35;
+    white-space: nowrap;
 }
 
 .profile-name {
@@ -399,6 +400,12 @@ img {
     color: var(--text-primary);
     border: 1px solid var(--border-color);
     background: var(--bg-secondary);
+}
+
+.button-whatsapp {
+    color: #fff;
+    background: #25d366;
+    box-shadow: 0 8px 20px -12px #25d366;
 }
 
 .section-title {
@@ -1128,6 +1135,7 @@ button:disabled {
 
     .professional-title {
         font-size: 0.9rem;
+        white-space: normal;
     }
 
     .timeline {
