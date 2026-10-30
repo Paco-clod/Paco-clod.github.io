@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { projects } from "./data";
+import KemyAssistant from "./components/KemyAssistant";
 import { fetchRepositories } from "./services/githubApi";
 import type { GitHubRepository, ProjectCategory } from "./types";
 
@@ -151,6 +152,7 @@ function App() {
           <a className="button primary" href="mailto:comepaco0@gmail.com">Me contacter par email</a>
         </section>
       </main>
+      <KemyAssistant repositories={repositories} />
       <footer>© 2026 Pacôme SODAZINDJI · React · TypeScript · FastAPI · MongoDB Atlas</footer>
     </div>
   );

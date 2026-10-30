@@ -51,6 +51,7 @@ Cette organisation permet de moderniser progressivement le portfolio sans interr
 - distinctions DSI Awards 2024 en Data Science & IA et Agriculture ;
 - intervention ERSUMA/OHADA et participation au COPMAN ;
 - Calendly, formulaire FastAPI, CV, téléphone et WhatsApp.
+- assistant Kemy avec réponses contrôlées sur le parcours, les projets et les moyens de contact.
 
 ## Lancer le front-end React
 
@@ -122,6 +123,14 @@ frontend/
 - liens externes sécurisés avec `rel="noreferrer"` ;
 - dépendances verrouillées par `package-lock.json` ;
 - front-end et back-end découplés.
+
+## Assistant Kemy
+
+Kemy est l’assistante du portfolio. Elle accueille les visiteurs et répond aux questions portant uniquement sur les informations vérifiées du parcours, du CV, des projets, des distinctions, de GitHub, de LinkedIn et des moyens de contact.
+
+La première version utilise une base de connaissances locale et des intentions explicites. Elle ne transmet pas les questions à un fournisseur d’IA externe et répond clairement lorsqu’une information n’est pas disponible. Les dépôts GitHub récupérés à l’ouverture du portfolio peuvent être cités dynamiquement, sans générer de description non fournie par GitHub.
+
+Cette approche privilégie la fiabilité et l’absence d’hallucination. Une évolution vers un modèle génératif pourra être étudiée uniquement avec une base documentaire validée, des citations de sources et des garde-fous côté API.
 
 ## Liens
 
