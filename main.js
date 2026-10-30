@@ -175,6 +175,7 @@ function initKemyAssistant() {
 
     const panel = widget.querySelector(".legacy-kemy-panel");
     const launcher = widget.querySelector(".legacy-kemy-launcher");
+    const closeButton = widget.querySelector(".legacy-kemy-close");
     const input = widget.querySelector("#legacy-kemy-input");
     const messages = widget.querySelector(".legacy-kemy-messages");
 
@@ -189,6 +190,7 @@ function initKemyAssistant() {
 
     function setOpen(isOpen) {
         panel.hidden = !isOpen;
+        widget.classList.toggle("is-open", isOpen);
         launcher.setAttribute("aria-expanded", String(isOpen));
         launcher.setAttribute("aria-label", isOpen ? "Fermer Kemy" : "Ouvrir Kemy");
         if (isOpen) input.focus();
@@ -216,27 +218,29 @@ function initKemyAssistant() {
         const value = question.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         if (!value) return;
         if (/(bonjour|salut|hello|bienvenue)/.test(value)) {
-            addMessage("Bienvenue sur le portfolio de M. Pacôme SODAZINDJI. Que puis-je faire pour vous ?", "assistant");
+            addMessage("Bienvenue sur mon portfolio. Je suis Pacôme Donan SODAZINDJI. Que puis-je faire pour vous ?", "assistant");
         } else if (/(cv|curriculum|telecharger)/.test(value)) {
             addMessage("Vous pouvez télécharger son CV professionnel au format PDF.", "assistant", [{ label: "Télécharger le CV", href: links.cv }]);
         } else if (/(appeler|telephone|numero|joindre|tel)/.test(value)) {
-            addMessage("Vous pouvez joindre Pacôme directement au +33 6 05 83 73 68.", "assistant", [{ label: "Appeler directement", href: links.phone }]);
+            addMessage("Vous pouvez me joindre directement au +33 6 05 83 73 68.", "assistant", [{ label: "M’appeler directement", href: links.phone }]);
         } else if (/whatsapp/.test(value)) {
             addMessage("Vous pouvez lui écrire directement sur WhatsApp.", "assistant", [{ label: "Écrire sur WhatsApp", href: links.whatsapp }]);
         } else if (/(rendez-vous|rendez vous|agenda|calendly|disponibilite)/.test(value)) {
             addMessage("Vous pouvez réserver un créneau dans son agenda Calendly.", "assistant", [{ label: "Réserver un rendez-vous", href: links.calendly }]);
         } else if (/(linkedin|profil professionnel)/.test(value)) {
-            addMessage("Voici son profil professionnel LinkedIn.", "assistant", [{ label: "Voir LinkedIn", href: links.linkedin }]);
+            addMessage("Vous pouvez consulter mon profil professionnel LinkedIn.", "assistant", [{ label: "Voir mon LinkedIn", href: links.linkedin }]);
         } else if (/(github|depot|code source|open source)/.test(value)) {
-            addMessage("Pacôme publie ses travaux techniques et ses expérimentations Data/IA sur GitHub.", "assistant", [{ label: "Voir GitHub", href: links.github }]);
+            addMessage("Je publie mes travaux techniques et mes expérimentations Data/IA sur GitHub.", "assistant", [{ label: "Voir mon GitHub", href: links.github }]);
         } else if (/(agroclimat|agriculture|climat)/.test(value)) {
             addMessage("AgroClimat est un projet d’intelligence artificielle conçu à Sèmè City en partenariat avec Sorbonne Université pour soutenir la résilience agricole. Le projet a reçu deux 2ᵉ Prix DSI Awards 2024 : Data Science & IA et Agriculture.", "assistant", [{ label: "Voir les réalisations", href: "projets.html" }]);
         } else if (/(prix|distinction|award|recompense)/.test(value)) {
-            addMessage("Pacôme a reçu deux 2ᵉ Prix DSI Awards 2024 pour AgroClimat : Data Science & IA et Agriculture. Il a également été panéliste/communicateur à l’ERSUMA/OHADA.", "assistant", [{ label: "Voir les interventions", href: "interventions.html" }]);
+            addMessage("J’ai reçu deux 2e Prix DSI Awards 2024 pour AgroClimat : Data Science & IA et Agriculture. J’ai également été panéliste et communicateur à l’ERSUMA/OHADA.", "assistant", [{ label: "Voir mes interventions", href: "interventions.html" }]);
+        } else if (/(fiable|serieux|serieuse|confiance|digne de confiance|recruter|recrutement|qualite|ponctuel|engagement)/.test(value)) {
+            addMessage("Oui, je m’appuie sur des éléments concrets pour démontrer mon sérieux : une Licence en Génie Télécoms et TIC obtenue comme major de promotion, un Master 1 en Big Data & Intelligence Artificielle à l’ESIEE-IT, des certifications en Data, IA, Data Engineering, Power BI et Business Analysis, ainsi qu’une expérience de Responsable Système d’Information jusqu’en août 2026. J’ai aussi conçu AgroClimat, réalisé un stage au SCAI de Sorbonne Université et obtenu deux 2e Prix DSI Awards 2024. Je vous invite à vérifier mon parcours, mes projets et mes réalisations dans mon CV et mon portfolio.", "assistant", [{ label: "Télécharger mon CV", href: links.cv }, { label: "Voir mes réalisations", href: "projets.html" }, { label: "Prendre rendez-vous", href: links.calendly }]);
         } else if (/(qui est pacome|qui est pacôme|presente? pacome|a propos de pacome|a propos de lui|identite)/.test(value)) {
-            addMessage("Pacôme Donan SODAZINDJI est un ingénieur informaticien et étudiant en Master 1 Big Data & Intelligence Artificielle à l’ESIEE-IT, à Pontoise. Titulaire d’une Licence en Génie Télécoms et TIC obtenue à l’UCAO/EGEI de Cotonou, où il a été major de promotion, il construit son parcours à la croisée de la Data, de l’IA, des systèmes d’information et de la transformation numérique. Il a conçu AgroClimat pendant sa formation IA 360 à Sèmè City en partenariat avec Sorbonne Université, puis réalisé un stage au SCAI. Ce projet lui a valu deux 2e Prix DSI Awards 2024, en Data Science & IA et en Agriculture. Il a aussi été panéliste et communicateur à l’ERSUMA/OHADA. Après une expérience comme Responsable SI chez GDB & ASSOCIÉS jusqu’en août 2026, il poursuit aujourd’hui son Master et recherche un stage à partir d’avril 2027, puis une alternance en M2 à partir de septembre 2027.", "assistant", [{ label: "Voir son parcours", href: "index.html#parcours" }, { label: "Télécharger le CV", href: links.cv }, { label: "Prendre rendez-vous", href: links.calendly }]);
+            addMessage("Je suis Pacôme Donan SODAZINDJI, ingénieur informaticien et étudiant en Master 1 Big Data & Intelligence Artificielle à l’ESIEE-IT, à Pontoise. Je suis titulaire d’une Licence en Génie Télécoms et TIC obtenue à l’UCAO/EGEI de Cotonou, où j’ai été major de promotion. Je construis mon parcours à la croisée de la Data, de l’IA, des systèmes d’information et de la transformation numérique. J’ai conçu AgroClimat pendant ma formation IA 360 à Sèmè City en partenariat avec Sorbonne Université, puis réalisé un stage au SCAI. Ce projet m’a valu deux 2e Prix DSI Awards 2024, en Data Science & IA et en Agriculture. J’ai aussi été panéliste et communicateur à l’ERSUMA/OHADA. Après mon expérience comme Responsable SI chez GDB & ASSOCIÉS jusqu’en août 2026, je poursuis aujourd’hui mon Master et je recherche un stage à partir d’avril 2027, puis une alternance en M2 à partir de septembre 2027.", "assistant", [{ label: "Voir mon parcours", href: "index.html#parcours" }, { label: "Télécharger mon CV", href: links.cv }, { label: "Prendre rendez-vous", href: links.calendly }]);
         } else if (/(formation|diplome|master|certification|etude|parcours|experience)/.test(value)) {
-            addMessage("Pacôme est étudiant en Master 1 Big Data & Intelligence Artificielle à l’ESIEE-IT. Il est titulaire d’une Licence en Génie Télécoms et TIC obtenue à l’UCAO/EGEI de Cotonou, où il a été major de promotion.", "assistant", [{ label: "Voir le parcours", href: "index.html#parcours" }]);
+            addMessage("Je suis étudiant en Master 1 Big Data & Intelligence Artificielle à l’ESIEE-IT. Je suis titulaire d’une Licence en Génie Télécoms et TIC obtenue à l’UCAO/EGEI de Cotonou, où j’ai été major de promotion.", "assistant", [{ label: "Voir mon parcours", href: "index.html#parcours" }]);
         } else if (/(stage|alternance|recrut|opportunite|emploi)/.test(value)) {
             addMessage("Pacôme recherche un stage M1 à partir d’avril 2027, puis une alternance M2 à partir de septembre 2027, avec une disponibilité possible en octobre ou novembre.", "assistant", [{ label: "Télécharger le CV", href: links.cv }, { label: "Prendre rendez-vous", href: links.calendly }]);
         } else {
@@ -253,7 +257,11 @@ function initKemyAssistant() {
     }
 
     launcher.addEventListener("click", () => setOpen(panel.hidden));
-    widget.querySelector(".legacy-kemy-close").addEventListener("click", () => setOpen(false));
+    closeButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setOpen(false);
+    });
     widget.querySelector(".legacy-kemy-form").addEventListener("submit", (event) => {
         event.preventDefault();
         submit(input.value);
