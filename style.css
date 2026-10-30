@@ -1004,6 +1004,175 @@ button:disabled {
     margin-bottom: 12px;
 }
 
+/* Assistant Kemy: visible on desktop and mobile. */
+.legacy-kemy-widget {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1000;
+}
+
+.legacy-kemy-hint {
+    position: absolute;
+    right: 0;
+    bottom: 70px;
+    padding: 7px 11px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: .78rem;
+    white-space: nowrap;
+}
+
+.legacy-kemy-launcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px 8px 8px;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent-color), #a78bfa);
+    color: #03111b;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+}
+
+.legacy-kemy-icon,
+.legacy-kemy-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #07111f;
+    color: var(--accent-color);
+    font-weight: 900;
+}
+
+.legacy-kemy-panel {
+    position: absolute;
+    right: 0;
+    bottom: 58px;
+    display: flex;
+    flex-direction: column;
+    width: min(380px, calc(100vw - 32px));
+    height: min(590px, calc(100vh - 120px));
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: var(--bg-card);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+}
+
+.legacy-kemy-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    background: linear-gradient(110deg, var(--bg-secondary), var(--bg-card));
+}
+
+.legacy-kemy-header div {
+    display: flex;
+    flex-direction: column;
+}
+
+.legacy-kemy-header small {
+    color: var(--text-secondary);
+}
+
+.legacy-kemy-close {
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.legacy-kemy-messages {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    padding: 14px;
+}
+
+.legacy-kemy-message {
+    max-width: 90%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    white-space: pre-line;
+}
+
+.legacy-kemy-message.assistant {
+    align-self: flex-start;
+    background: var(--bg-secondary);
+}
+
+.legacy-kemy-message.user {
+    align-self: flex-end;
+    background: var(--accent-color);
+    color: #03111b;
+}
+
+.legacy-kemy-message a {
+    display: block;
+    margin-top: 7px;
+    color: var(--accent-color);
+    font-size: .8rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.legacy-kemy-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 14px 10px;
+}
+
+.legacy-kemy-suggestions button {
+    padding: 6px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: .72rem;
+    cursor: pointer;
+}
+
+.legacy-kemy-form {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.legacy-kemy-form input {
+    min-width: 0;
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.legacy-kemy-form button {
+    padding: 0 13px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--accent-color);
+    color: #03111b;
+    font-weight: 900;
+    cursor: pointer;
+}
+
 @media (max-width: 900px) {
     .container {
         width: calc(100% - 40px);

@@ -233,6 +233,8 @@ function initKemyAssistant() {
             addMessage("AgroClimat est un projet d’intelligence artificielle conçu à Sèmè City en partenariat avec Sorbonne Université pour soutenir la résilience agricole. Le projet a reçu deux 2ᵉ Prix DSI Awards 2024 : Data Science & IA et Agriculture.", "assistant", [{ label: "Voir les réalisations", href: "projets.html" }]);
         } else if (/(prix|distinction|award|recompense)/.test(value)) {
             addMessage("Pacôme a reçu deux 2ᵉ Prix DSI Awards 2024 pour AgroClimat : Data Science & IA et Agriculture. Il a également été panéliste/communicateur à l’ERSUMA/OHADA.", "assistant", [{ label: "Voir les interventions", href: "interventions.html" }]);
+        } else if (/(qui est pacome|qui est pacôme|presente? pacome|a propos de pacome|a propos de lui|identite)/.test(value)) {
+            addMessage("Pacôme Donan SODAZINDJI est un ingénieur informaticien et étudiant en Master 1 Big Data & Intelligence Artificielle à l’ESIEE-IT, à Pontoise. Titulaire d’une Licence en Génie Télécoms et TIC obtenue à l’UCAO/EGEI de Cotonou, où il a été major de promotion, il construit son parcours à la croisée de la Data, de l’IA, des systèmes d’information et de la transformation numérique. Il a conçu AgroClimat pendant sa formation IA 360 à Sèmè City en partenariat avec Sorbonne Université, puis réalisé un stage au SCAI. Ce projet lui a valu deux 2e Prix DSI Awards 2024, en Data Science & IA et en Agriculture. Il a aussi été panéliste et communicateur à l’ERSUMA/OHADA. Après une expérience comme Responsable SI chez GDB & ASSOCIÉS jusqu’en août 2026, il poursuit aujourd’hui son Master et recherche un stage à partir d’avril 2027, puis une alternance en M2 à partir de septembre 2027.", "assistant", [{ label: "Voir son parcours", href: "index.html#parcours" }, { label: "Télécharger le CV", href: links.cv }, { label: "Prendre rendez-vous", href: links.calendly }]);
         } else if (/(formation|diplome|master|certification|etude|parcours|experience)/.test(value)) {
             addMessage("Pacôme est étudiant en Master 1 Big Data & Intelligence Artificielle à l’ESIEE-IT. Il est titulaire d’une Licence en Génie Télécoms et TIC obtenue à l’UCAO/EGEI de Cotonou, où il a été major de promotion.", "assistant", [{ label: "Voir le parcours", href: "index.html#parcours" }]);
         } else if (/(stage|alternance|recrut|opportunite|emploi)/.test(value)) {
@@ -292,134 +294,6 @@ function initContactForm() {
             });
             if (!response.ok) {
                 throw new Error(`API contact: ${response.status}`);
-            }
-
-            function initKemyAssistant() {
-                if (document.querySelector(".legacy-kemy-widget")) return;
-
-                const widget = document.createElement("aside");
-                widget.className = "legacy-kemy-widget";
-                widget.setAttribute("aria-label", "Assistant Kemy");
-                widget.innerHTML = `
-                    <div class="legacy-kemy-panel" hidden>
-                        <div class="legacy-kemy-header">
-                            <span class="legacy-kemy-avatar" aria-hidden="true">K</span>
-                            <div><strong>Kemy</strong><small>Assistant du portfolio</small></div>
-                            <button type="button" class="legacy-kemy-close" aria-label="Fermer Kemy">×</button>
-                        </div>
-                        <div class="legacy-kemy-messages" aria-live="polite">
-                            <div class="legacy-kemy-message assistant">
-                                Bienvenue sur le portfolio de M. Pacôme SODAZINDJI. Que puis-je faire pour vous ?
-                            </div>
-                        </div>
-                        <div class="legacy-kemy-suggestions">
-                            <button type="button" data-kemy-question="Quel est son parcours ?">Son parcours</button>
-                            <button type="button" data-kemy-question="Quels sont ses projets ?">Ses projets</button>
-                            <button type="button" data-kemy-question="Comment le contacter ?">Le contacter</button>
-                        </div>
-                        <form class="legacy-kemy-form">
-                            <label class="sr-only" for="legacy-kemy-input">Votre question</label>
-                            <input id="legacy-kemy-input" type="text" placeholder="Posez votre question..." autocomplete="off">
-                            <button type="submit" aria-label="Envoyer la question">➤</button>
-                        </form>
-                    </div>
-                    <span class="legacy-kemy-hint">Besoin d’une information ?</span>
-                    <button type="button" class="legacy-kemy-launcher" aria-expanded="false" aria-label="Ouvrir Kemy">
-                        <span class="legacy-kemy-icon">K</span><span>Kemy</span>
-                    </button>
-                `;
-                document.body.appendChild(widget);
-
-                const panel = widget.querySelector(".legacy-kemy-panel");
-                const launcher = widget.querySelector(".legacy-kemy-launcher");
-                const closeButton = widget.querySelector(".legacy-kemy-close");
-                const form = widget.querySelector(".legacy-kemy-form");
-                const input = widget.querySelector("#legacy-kemy-input");
-                const messages = widget.querySelector(".legacy-kemy-messages");
-
-                function setOpen(isOpen) {
-                    panel.hidden = !isOpen;
-                    launcher.setAttribute("aria-expanded", String(isOpen));
-                    launcher.setAttribute("aria-label", isOpen ? "Fermer Kemy" : "Ouvrir Kemy");
-                    widget.classList.toggle("is-open", isOpen);
-                    if (isOpen) input.focus();
-                }
-
-                function addMessage(content, role, links) {
-                    const message = document.createElement("div");
-                    message.className = `legacy-kemy-message ${role}`;
-                    message.textContent = content;
-                    if (links) {
-                        links.forEach((link) => {
-                            const anchor = document.createElement("a");
-                            anchor.href = link.href;
-                            anchor.textContent = `${link.label} →`;
-                            if (link.href.startsWith("http")) {
-                                anchor.target = "_blank";
-                                anchor.rel = "noopener noreferrer";
-                            }
-                            message.appendChild(anchor);
-                        });
-                    }
-                    messages.appendChild(message);
-                    messages.scrollTop = messages.scrollHeight;
-                }
-
-                function answerQuestion(question) {
-                    const value = question.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                    const links = {
-                        cv: "assets/CV_Pacome_SODAZINDJI_Data_IA.pdf",
-                        phone: "tel:+33605837368",
-                        whatsapp: "https://wa.me/33605837368",
-                        calendly: "https://calendly.com/comepaco0",
-                        github: "https://github.com/Paco-clod",
-                        linkedin: "https://www.linkedin.com/in/pacome-sodazindji-55a6821b/"
-                    };
-                    if (!value) return;
-                    if (/(bonjour|salut|hello|bienvenue)/.test(value)) {
-                        addMessage("Bienvenue sur le portfolio de M. Pacôme SODAZINDJI. Que puis-je faire pour vous ?", "assistant");
-                    } else if (/(cv|curriculum|telecharger)/.test(value)) {
-                        addMessage("Vous pouvez télécharger son CV professionnel au format PDF.", "assistant", [{ label: "Télécharger le CV", href: links.cv }]);
-                    } else if (/(appeler|telephone|numero|joindre|tel)/.test(value)) {
-                        addMessage("Vous pouvez joindre Pacôme directement au +33 6 05 83 73 68.", "assistant", [{ label: "Appeler directement", href: links.phone }]);
-                    } else if (/whatsapp/.test(value)) {
-                        addMessage("Vous pouvez lui écrire directement sur WhatsApp.", "assistant", [{ label: "Écrire sur WhatsApp", href: links.whatsapp }]);
-                    } else if (/(rendez-vous|rendez vous|agenda|calendly|disponibilite)/.test(value)) {
-                        addMessage("Vous pouvez réserver un créneau dans son agenda Calendly.", "assistant", [{ label: "Réserver un rendez-vous", href: links.calendly }]);
-                    } else if (/(linkedin|profil professionnel)/.test(value)) {
-                        addMessage("Voici son profil professionnel LinkedIn.", "assistant", [{ label: "Voir LinkedIn", href: links.linkedin }]);
-                    } else if (/(github|depot|code source|open source)/.test(value)) {
-                        addMessage("Pacôme publie ses travaux techniques et ses expérimentations Data/IA sur GitHub.", "assistant", [{ label: "Voir GitHub", href: links.github }]);
-                    } else if (/(agroclimat|agriculture|climat)/.test(value)) {
-                        addMessage("AgroClimat est un projet d’intelligence artificielle conçu à Sèmè City en partenariat avec Sorbonne Université pour soutenir la résilience agricole. Le projet a reçu deux 2ᵉ Prix DSI Awards 2024 : Data Science & IA et Agriculture.", "assistant", [{ label: "Voir les réalisations", href: "projets.html" }]);
-                    } else if (/(prix|distinction|award|recompense)/.test(value)) {
-                        addMessage("Pacôme a reçu deux 2ᵉ Prix DSI Awards 2024 pour AgroClimat : Data Science & IA et Agriculture. Il a également été panéliste/communicateur à l’ERSUMA/OHADA.", "assistant", [{ label: "Voir les interventions", href: "interventions.html" }]);
-                    } else if (/(formation|diplome|master|certification|etude)/.test(value)) {
-                        addMessage("Pacôme est étudiant en Master 1 Big Data & Intelligence Artificielle à l’ESIEE-IT. Il est titulaire d’une Licence en Génie Télécoms et TIC obtenue à l’UCAO/EGEI de Cotonou, où il a été major de promotion.", "assistant", [{ label: "Voir le parcours", href: "index.html#parcours" }]);
-                    } else if (/(stage|alternance|recrut|opportunite|emploi)/.test(value)) {
-                        addMessage("Pacôme recherche un stage M1 à partir d’avril 2027, puis une alternance M2 à partir de septembre 2027, avec une disponibilité possible en octobre ou novembre.", "assistant", [{ label: "Télécharger le CV", href: links.cv }, { label: "Prendre rendez-vous", href: links.calendly }]);
-                    } else {
-                        addMessage("Je ne trouve pas cette information dans les données vérifiées du portfolio. Je peux vous renseigner sur son parcours, ses projets, ses distinctions, GitHub, LinkedIn ou ses coordonnées.", "assistant", [{ label: "Télécharger le CV", href: links.cv }, { label: "Contacter Pacôme", href: "contact.html" }]);
-                    }
-                }
-
-                function submit(question) {
-                    const value = question.trim();
-                    if (!value) return;
-                    addMessage(value, "user");
-                    answerQuestion(value);
-                    input.value = "";
-                }
-
-                launcher.addEventListener("click", () => setOpen(panel.hidden));
-                closeButton.addEventListener("click", () => setOpen(false));
-                form.addEventListener("submit", (event) => {
-                    event.preventDefault();
-                    submit(input.value);
-                });
-                widget.querySelectorAll("[data-kemy-question]").forEach((button) => {
-                    button.addEventListener("click", () => submit(button.dataset.kemyQuestion || ""));
-                });
             }
 
             statusDiv.textContent = "Message envoyé avec succès !";
