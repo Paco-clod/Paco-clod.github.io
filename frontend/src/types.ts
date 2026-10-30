@@ -7,6 +7,7 @@ export interface Project {
   image: string;
   technologies: string[];
   featured?: boolean;
+  url?: string;
 }
 
 export interface GitHubRepository {
