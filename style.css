@@ -1067,6 +1067,10 @@ button:disabled {
     box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
 }
 
+.legacy-kemy-panel[hidden] {
+    display: none !important;
+}
+
 .legacy-kemy-header {
     display: flex;
     align-items: center;

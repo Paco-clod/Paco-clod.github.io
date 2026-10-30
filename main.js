@@ -231,6 +231,10 @@ function initKemyAssistant() {
             addMessage("Vous pouvez consulter mon profil professionnel LinkedIn.", "assistant", [{ label: "Voir mon LinkedIn", href: links.linkedin }]);
         } else if (/(github|depot|code source|open source)/.test(value)) {
             addMessage("Je publie mes travaux techniques et mes expérimentations Data/IA sur GitHub.", "assistant", [{ label: "Voir mon GitHub", href: links.github }]);
+        } else if (/(contacter|contact|ecrire|joindre|email)/.test(value)) {
+            addMessage("Vous pouvez me contacter directement. Je peux échanger sur un projet Data, IA, systèmes d’information ou transformation numérique.", "assistant", [{ label: "Ouvrir la page contact", href: "contact.html" }, { label: "M’écrire sur WhatsApp", href: links.whatsapp }, { label: "Prendre rendez-vous", href: links.calendly }]);
+        } else if (/(projet|realisation|travail|portfolio)/.test(value)) {
+            addMessage("Je présente mes réalisations en Data & IA, développement web, SEO et consulting SI. Parmi elles : AgroClimat, AXI’HOM, APG DEO GRATIAS BUSINESS, AS Capital Investment et plusieurs missions de digitalisation.", "assistant", [{ label: "Voir mes réalisations", href: "projets.html" }]);
         } else if (/(agroclimat|agriculture|climat)/.test(value)) {
             addMessage("AgroClimat est un projet d’intelligence artificielle conçu à Sèmè City en partenariat avec Sorbonne Université pour soutenir la résilience agricole. Le projet a reçu deux 2ᵉ Prix DSI Awards 2024 : Data Science & IA et Agriculture.", "assistant", [{ label: "Voir les réalisations", href: "projets.html" }]);
         } else if (/(prix|distinction|award|recompense)/.test(value)) {
