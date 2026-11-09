@@ -91,7 +91,7 @@ function App() {
               <a className="button whatsapp" href="https://wa.me/33605837368" target="_blank" rel="noreferrer">WhatsApp</a>
             </div>
           </div>
-          <img className="hero-image" src="/photo_pro.jpg" alt="Portrait professionnel de Pacôme SODAZINDJI" />
+          <img className="hero-image" src="/Image_Profil_01.png" alt="Portrait professionnel de Pacôme SODAZINDJI" />
         </section>
 
         <section className="availability section">
