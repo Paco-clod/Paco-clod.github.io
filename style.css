@@ -256,15 +256,16 @@ img {
 }
 
 .hero-profile {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
     text-align: left;
 }
 
 .profile-photo-wrap {
-    align-self: center;
-    width: min(100%, 620px);
+    align-self: start;
+    width: 100%;
     height: auto;
     overflow: hidden;
     border-radius: 24px;
@@ -308,8 +309,8 @@ img {
 .profile-content {
     display: flex;
     flex-direction: column;
-    width: min(100%, 980px);
-    margin: 0 auto;
+    width: 100%;
+    padding-top: 8px;
     animation: content-reveal 0.8s ease both;
 }
 
@@ -709,15 +710,15 @@ img {
 /* Cards Grids */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
 }
 
 .card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 25px;
+    padding: 18px;
     box-shadow: var(--shadow);
 }
 
@@ -785,7 +786,8 @@ img {
     object-fit: contain;
     background: var(--bg-secondary);
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin: 0 auto 12px;
+    max-width: 240px;
 }
 
 .project-visual {
