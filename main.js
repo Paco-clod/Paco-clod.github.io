@@ -149,11 +149,13 @@ function initKemyAssistant() {
         <div class="legacy-kemy-panel" hidden>
             <div class="legacy-kemy-header">
                 <span class="legacy-kemy-avatar" aria-hidden="true">K</span>
-                <div><strong>Kemy</strong><small>Assistant du portfolio</small></div>
+                <div><strong>Kemy</strong><small>Assistante du portfolio</small></div>
+                <button type="button" class="legacy-kemy-new" aria-label="Démarrer une nouvelle conversation" title="Nouvelle conversation">+</button>
                 <button type="button" class="legacy-kemy-close" aria-label="Fermer Kemy">×</button>
             </div>
             <div class="legacy-kemy-messages" aria-live="polite">
-                <div class="legacy-kemy-message assistant">Bienvenue sur le portfolio de M. Pacôme SODAZINDJI. Que puis-je faire pour vous ?</div>
+                <div class="legacy-kemy-message assistant">Bonjour, je suis Kemy, l’assistante virtuelle du portfolio. Je peux vous renseigner sur le parcours, les projets et les distinctions.</div>
+                <div class="legacy-kemy-message assistant">Qui est Pacôme ?</div>
             </div>
             <div class="legacy-kemy-suggestions">
                 <button type="button" data-kemy-question="Quel est son parcours ?">Son parcours</button>
@@ -176,8 +178,11 @@ function initKemyAssistant() {
     const panel = widget.querySelector(".legacy-kemy-panel");
     const launcher = widget.querySelector(".legacy-kemy-launcher");
     const closeButton = widget.querySelector(".legacy-kemy-close");
+    const newButton = widget.querySelector(".legacy-kemy-new");
     const input = widget.querySelector("#legacy-kemy-input");
     const messages = widget.querySelector(".legacy-kemy-messages");
+    let inactivityTimer;
+    let inactivityNoticeShown = false;
 
     const links = {
         cv: "assets/CV_Pacome_SODAZINDJI_Data_IA.pdf",
@@ -193,10 +198,15 @@ function initKemyAssistant() {
         widget.classList.toggle("is-open", isOpen);
         launcher.setAttribute("aria-expanded", String(isOpen));
         launcher.setAttribute("aria-label", isOpen ? "Fermer Kemy" : "Ouvrir Kemy");
-        if (isOpen) input.focus();
+        if (isOpen) {
+            resetInactivityTimer();
+            input.focus();
+        } else {
+            clearTimeout(inactivityTimer);
+        }
     }
 
-    function addMessage(content, role, messageLinks = []) {
+    function addMessage(content, role, messageLinks = [], actions = []) {
         const message = document.createElement("div");
         message.className = `legacy-kemy-message ${role}`;
         message.textContent = content;
@@ -210,8 +220,40 @@ function initKemyAssistant() {
             }
             message.appendChild(anchor);
         });
+        actions.forEach((action) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "legacy-kemy-action";
+            button.textContent = action.label;
+            button.addEventListener("click", action.onClick);
+            message.appendChild(button);
+        });
         messages.appendChild(message);
         messages.scrollTop = messages.scrollHeight;
+    }
+
+    function resetInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        if (!panel.hidden && !inactivityNoticeShown) {
+            inactivityTimer = setTimeout(() => {
+                inactivityNoticeShown = true;
+                addMessage(
+                    "Cela fait un moment que nous n’échangeons plus. Vous pouvez fermer cette conversation ou en démarrer une nouvelle.",
+                    "assistant",
+                    [],
+                    [{ label: "Fermer la conversation", onClick: () => setOpen(false) }]
+                );
+            }, 60000);
+        }
+    }
+
+    function resetConversation() {
+        messages.replaceChildren();
+        inactivityNoticeShown = false;
+        addMessage("Bonjour, je suis Kemy, l’assistante virtuelle du portfolio. Je peux vous renseigner sur le parcours, les projets et les distinctions.", "assistant");
+        addMessage("Qui est Pacôme ?", "assistant");
+        resetInactivityTimer();
+        input.focus();
     }
 
     function answerQuestion(question) {
@@ -242,7 +284,7 @@ function initKemyAssistant() {
         } else if (/(fiable|serieux|serieuse|confiance|digne de confiance|recruter|recrutement|qualite|ponctuel|engagement)/.test(value)) {
             addMessage("Oui, je m’appuie sur des éléments concrets pour démontrer mon sérieux : une Licence en Génie Télécoms et TIC obtenue comme major de promotion, un Master 1 en Big Data & Intelligence Artificielle à l’ESIEE-IT, des certifications en Data, IA, Data Engineering, Power BI et Business Analysis, ainsi qu’une expérience de Responsable Système d’Information jusqu’en août 2026. J’ai aussi conçu AgroClimat, réalisé un stage au SCAI de Sorbonne Université et obtenu deux 2e Prix DSI Awards 2024. Je vous invite à vérifier mon parcours, mes projets et mes réalisations dans mon CV et mon portfolio.", "assistant", [{ label: "Télécharger mon CV", href: links.cv }, { label: "Voir mes réalisations", href: "projets.html" }, { label: "Prendre rendez-vous", href: links.calendly }]);
         } else if (/(qui est pacome|qui est pacôme|presente? pacome|a propos de pacome|a propos de lui|identite)/.test(value)) {
-            addMessage("Je suis Pacôme Donan SODAZINDJI, ingénieur informaticien et étudiant en Master 1 Big Data & Intelligence Artificielle à l’ESIEE-IT, à Pontoise. Je suis titulaire d’une Licence en Génie Télécoms et TIC obtenue à l’UCAO/EGEI de Cotonou, où j’ai été major de promotion. Je construis mon parcours à la croisée de la Data, de l’IA, des systèmes d’information et de la transformation numérique. J’ai conçu AgroClimat pendant ma formation IA 360 à Sèmè City en partenariat avec Sorbonne Université, puis réalisé un stage au SCAI. Ce projet m’a valu deux 2e Prix DSI Awards 2024, en Data Science & IA et en Agriculture. J’ai aussi été panéliste et communicateur à l’ERSUMA/OHADA. Après mon expérience comme Responsable SI chez GDB & ASSOCIÉS jusqu’en août 2026, je poursuis aujourd’hui mon Master et je recherche un stage à partir d’avril 2027, puis une alternance en M2 à partir de septembre 2027.", "assistant", [{ label: "Voir mon parcours", href: "index.html#parcours" }, { label: "Télécharger mon CV", href: links.cv }, { label: "Prendre rendez-vous", href: links.calendly }]);
+            addMessage("Pacôme Donan SODAZINDJI est ingénieur informaticien et étudiant en Master 1 Big Data & Intelligence Artificielle à l’ESIEE-IT, à Pontoise. Il est titulaire d’une Licence en Génie Télécoms et TIC obtenue à l’UCAO/EGEI de Cotonou, où il a été major de promotion. Son parcours se situe à la croisée de la Data, de l’IA, des systèmes d’information et de la transformation numérique. Il a conçu AgroClimat pendant sa formation IA 360 à Sèmè City en partenariat avec Sorbonne Université, puis réalisé un stage au SCAI. Ce projet lui a valu deux 2e Prix DSI Awards 2024, en Data Science & IA et en Agriculture. Il a aussi été panéliste et communicateur à l’ERSUMA/OHADA. Après son expérience comme Responsable SI chez GDB & ASSOCIÉS jusqu’en août 2026, il poursuit aujourd’hui son Master et recherche un stage à partir d’avril 2027, puis une alternance en M2 à partir de septembre 2027.", "assistant", [{ label: "Voir son parcours", href: "index.html#parcours" }, { label: "Télécharger son CV", href: links.cv }, { label: "Prendre rendez-vous", href: links.calendly }]);
         } else if (/(formation|diplome|master|certification|etude|parcours|experience)/.test(value)) {
             addMessage("Je suis étudiant en Master 1 Big Data & Intelligence Artificielle à l’ESIEE-IT. Je suis titulaire d’une Licence en Génie Télécoms et TIC obtenue à l’UCAO/EGEI de Cotonou, où j’ai été major de promotion.", "assistant", [{ label: "Voir mon parcours", href: "index.html#parcours" }]);
         } else if (/(stage|alternance|recrut|opportunite|emploi)/.test(value)) {
@@ -266,6 +308,9 @@ function initKemyAssistant() {
         event.stopPropagation();
         setOpen(false);
     });
+    newButton.addEventListener("click", resetConversation);
+    panel.addEventListener("pointerdown", resetInactivityTimer);
+    input.addEventListener("input", resetInactivityTimer);
     widget.querySelector(".legacy-kemy-form").addEventListener("submit", (event) => {
         event.preventDefault();
         submit(input.value);

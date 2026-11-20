@@ -256,16 +256,15 @@ img {
 }
 
 .hero-profile {
-    display: grid;
-    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.4fr);
-    gap: 48px;
-    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
     text-align: left;
-    min-height: 620px;
 }
 
 .profile-photo-wrap {
-    align-self: start;
+    align-self: center;
+    width: min(100%, 620px);
     height: auto;
     overflow: hidden;
     border-radius: 24px;
@@ -309,7 +308,8 @@ img {
 .profile-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    width: min(100%, 980px);
+    margin: 0 auto;
     animation: content-reveal 0.8s ease both;
 }
 
@@ -778,9 +778,12 @@ img {
 }
 
 .award-image {
+    display: block;
     width: 100%;
-    max-height: 220px;
-    object-fit: cover;
+    aspect-ratio: 1;
+    height: auto;
+    object-fit: contain;
+    background: var(--bg-secondary);
     border-radius: 8px;
     margin-bottom: 15px;
 }
@@ -1128,6 +1131,27 @@ button:disabled {
     cursor: pointer;
 }
 
+.legacy-kemy-new {
+    width: 30px;
+    height: 30px;
+    margin-left: 4px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.legacy-kemy-new:hover,
+.legacy-kemy-new:focus-visible,
+.legacy-kemy-close:hover,
+.legacy-kemy-close:focus-visible {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
 .legacy-kemy-messages {
     display: flex;
     flex: 1;
@@ -1162,6 +1186,19 @@ button:disabled {
     font-size: .8rem;
     font-weight: 800;
     text-decoration: none;
+}
+
+.legacy-kemy-action {
+    display: block;
+    margin-top: 10px;
+    padding: 7px 10px;
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--accent-color);
+    font-size: .78rem;
+    font-weight: 800;
+    cursor: pointer;
 }
 
 .legacy-kemy-suggestions {
